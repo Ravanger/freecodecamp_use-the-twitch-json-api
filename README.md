@@ -1,21 +1,19 @@
-# Show the Local Weather
+# Use the Twitch JSON API
 
-https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/show-the-local-weather
+https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/use-the-twitch-json-api
 
-**Objective**: Build an app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/bELRjV.
+**Objective**: Build an app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/Myvqmo/.
 
-**Rule #1:** Don't look at the example project's code. Figure it out for yourself.
+The Twitch API is a RESTful API that lets developers build creative integrations for the broader Twitch community.
 
-**Rule #2:** Fulfill the below user stories and get all of the tests to pass. Use whichever libraries or APIs you need. Give it your own personal style.
+Fulfill the below user stories and get all of the tests to pass. Use whichever libraries or APIs you need. Give it your own personal style.
 
-**User Story:** I can see the weather in my current location.
+**User Story:** I can see whether freeCodeCamp is currently streaming on Twitch.tv.
 
-**User Story:** I can see a different icon or background image (e.g. snowy mountain, hot desert) depending on the weather.
+**User Story:** I can click the status output and be sent directly to the freeCodeCamp's Twitch.tv channel.
 
-**User Story:** I can push a button to toggle between Fahrenheit and Celsius.
+**User Story:** If a Twitch user is currently streaming, I can see additional details about what they are streaming.
 
-**Note:** Many internet browsers now require an HTTP Secure (`https://`) connection to obtain a user's locale via HTML5 Geolocation. For this reason, we recommend using HTML5 Geolocation to get user location and then use the freeCodeCamp Weather API https://weather-proxy.freecodecamp.rocks/ which uses an HTTP Secure connection for the weather. Also, be sure to connect to CodePen.io via `https://`.
+**Hint:** Here's an array of the Twitch.tv usernames of people who regularly stream: `["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"]`
 
-When you are finished, include a link to your project on CodePen and click the "I've completed this challenge" button.
-
-You can get feedback on your project by sharing it on the freeCodeCamp forum.
+**UPDATE:** Due to a change in conditions on API usage, Twitch.tv requires an API key, but we've built a workaround. Use https://twitch-proxy.freecodecamp.rocks/ instead of Twitch's API base URL and you'll still be able to get account information, without needing to sign up for an API key.
