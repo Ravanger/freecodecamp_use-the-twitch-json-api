@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  line-height: 1.5;
+  line-height: calc(1em + 0.5rem);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --bg-hue: 220;
+  --bg-color: hsla(var(--bg-hue), 50%, 20%, 1);
+  --main-color: hsla(var(--bg-hue), 25%, 65%, 1);
+}
+
+::-webkit-scrollbar {
+  width: 0.5ch;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+}
+
+a,
+body,
+button {
+  color: var(--main-color);
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  font-family: Ubuntu Mono, monospace;
+}
+
+h1 {
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=global.css.map */
