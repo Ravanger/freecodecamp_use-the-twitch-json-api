@@ -1,7 +1,12 @@
 .header {
+  justify-content: space-between;
+  padding: 1ch 16ch;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.controls {
   display: flex;
-  align-items: center;
-  gap: 2ch;
-  padding: 1ch 10%;
-  text-transform: uppercase;
 }

@@ -11,8 +11,7 @@
 }
 
 html,
-body,
-#__next {
+body {
   height: 100%;
 }
 
@@ -79,8 +78,14 @@ button {
   color: var(--main-color);
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 body {
@@ -89,6 +94,20 @@ body {
 
 h1 {
   white-space: nowrap;
+}
+
+.greyBg {
+  background-color: hsl(0deg, 0%, 80%);
+  color: hsl(220deg, 50%, 20%);
+}
+
+.streamRow {
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  margin-top: 1ch;
+  padding: 1ch 4ch;
+  transition: background-color 0.2s ease-in-out;
 }
 
 /*# sourceMappingURL=global.css.map */

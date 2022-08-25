@@ -5,11 +5,7 @@ import styles from "./Wrapper.module.css"
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }]
 
 const Wrapper: React.FC<WrapperPropTypes> = ({ children }) => {
-  return (
-    <div className="outerWrapper">
-      <div className="wrapper">{children}</div>
-    </div>
-  )
+  return <div className="wrapper">{children}</div>
 }
 
 export default Wrapper

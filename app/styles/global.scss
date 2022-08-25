@@ -29,8 +29,14 @@ button {
   color: var(--main-color);
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 body {
@@ -39,4 +45,18 @@ body {
 
 h1 {
   white-space: nowrap;
+}
+
+.greyBg {
+  background-color: hsla(0, 0, 80, 1);
+  color: hsla(220, 50, 20, 1);
+}
+
+.streamRow {
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  margin-top: 1ch;
+  padding: 1ch 4ch;
+  transition: background-color 0.2s ease-in-out;
 }
