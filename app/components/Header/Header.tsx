@@ -1,9 +1,5 @@
-import type { LinksFunction } from "@remix-run/node"
 import type { HeaderPropTypes } from "./Header.types"
-import styles from "./Header.module.css"
 import classNames from "classnames"
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }]
 
 const Header: React.FC<HeaderPropTypes> = ({ title, filter, setFilter }) => {
   return (

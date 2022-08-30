@@ -53,6 +53,7 @@ h6 {
   --bg-hue: 220;
   --bg-color: hsla(var(--bg-hue), 50%, 20%, 1);
   --main-color: hsla(var(--bg-hue), 25%, 65%, 1);
+  --grey: hsla(0, 0%, 80%, 1);
 }
 
 ::-webkit-scrollbar {
@@ -97,8 +98,8 @@ h1 {
 }
 
 .greyBg {
-  background-color: hsl(0deg, 0%, 80%);
-  color: hsl(220deg, 50%, 20%);
+  background-color: var(--grey);
+  color: var(--bg-color);
 }
 
 .streamRow {

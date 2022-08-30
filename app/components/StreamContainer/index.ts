@@ -1,1 +1,1 @@
-export { default, links } from "./StreamContainer"
+export { default } from "./StreamContainer"

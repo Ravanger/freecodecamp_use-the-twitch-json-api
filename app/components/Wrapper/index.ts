@@ -1,1 +1,1 @@
-export { default, links } from "./Wrapper"
+export { default } from "./Wrapper"

@@ -1,1 +1,1 @@
-export { default, links } from "./ScrollToTopButton"
+export { default } from "./ScrollToTopButton"

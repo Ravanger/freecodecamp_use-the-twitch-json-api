@@ -1,7 +1,62 @@
-@use "./reset.scss";
-@use "./colors.scss";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-::-webkit-scrollbar {
+* {
+  margin: 0;
+  line-height: 1.5;
+  line-height: calc(1em + 0.5rem);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --bg-hue: 220;
+  --bg-color: hsla(var(--bg-hue), 50%, 20%, 1);
+  --main-color: hsla(var(--bg-hue), 25%, 65%, 1);
+  --grey: hsla(0, 0%, 80%, 1);
+}
+
+f:-webkit-scrollbar {
   width: 0.5ch;
 }
 
@@ -55,3 +110,5 @@ h1 {
   padding: 1ch 4ch;
   transition: background-color 0.2s ease-in-out;
 }
+
+/*# sourceMappingURL=global.css.map */

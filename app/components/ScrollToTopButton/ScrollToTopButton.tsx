@@ -1,10 +1,6 @@
-import type { LinksFunction } from "@remix-run/node"
-import styles from "./ScrollToTopButton.module.css"
 import { FiChevronUp } from "react-icons/fi"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }]
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +22,7 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <button
-      className={classNames("scrollToTop", isVisible && "showButton")}
+      className={classNames("scrollToTop", "greyBg", isVisible && "showButton")}
       onClick={() => {
         window.scrollTo({
           top: 0,

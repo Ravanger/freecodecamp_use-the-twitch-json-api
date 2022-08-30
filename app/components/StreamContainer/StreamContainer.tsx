@@ -1,9 +1,5 @@
-import type { LinksFunction } from "@remix-run/node"
 import type { StreamContainerPropTypes } from "./StreamContainer.types"
-import styles from "./StreamContainer.module.css"
 import Spinner from "../Spinner"
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }]
 
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({ streamer }) => {
   return (

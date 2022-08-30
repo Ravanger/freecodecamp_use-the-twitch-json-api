@@ -2,26 +2,16 @@ import { useEffect, useState } from "react"
 import type { LinksFunction } from "@remix-run/node"
 import type { StreamerType } from "~/types/streamer"
 import type { FilterType } from "~/types/filter"
-import Header, { links as headerLinks } from "~/components/Header"
-import ScrollToTopButton, {
-  links as scrollToTopButtonLinks,
-} from "~/components/ScrollToTopButton"
-import Wrapper, { links as wrapperLinks } from "~/components/Wrapper"
+import Header from "~/components/Header"
+import ScrollToTopButton from "~/components/ScrollToTopButton"
+import Wrapper from "~/components/Wrapper"
 import { STREAMERS } from "~/data/streamers"
 import { TWITCH_STREAM_URL, TWITCH_USER_URL } from "~/data/apiRoutes"
-import StreamContainer, {
-  links as streamContainerLinks,
-} from "~/components/StreamContainer"
-import { links as spinnerLinks } from "~/components/Spinner"
+import StreamContainer from "~/components/StreamContainer"
+import styles from "~/styles/routes/index.css"
 
 export const links: LinksFunction = () => {
-  return [
-    ...wrapperLinks(),
-    ...headerLinks(),
-    ...scrollToTopButtonLinks(),
-    ...streamContainerLinks(),
-    ...spinnerLinks(),
-  ]
+  return [{ rel: "stylesheet", href: styles }]
 }
 
 const Index = () => {
