@@ -22,7 +22,9 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <button
-      className={classNames("scrollToTop", "greyBg", isVisible && "showButton")}
+      className={classNames("scrollToTop", "greyBg", {
+        "scrollToTop--showButton": isVisible,
+      })}
       onClick={() => {
         window.scrollTo({
           top: 0,

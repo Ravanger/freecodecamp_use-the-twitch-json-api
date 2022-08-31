@@ -3,10 +3,10 @@
   padding: 1ch 16ch;
 }
 
-.active {
-  text-decoration: underline;
+.header--controls {
+  display: flex;
 }
 
-.controls {
-  display: flex;
+.header--active {
+  text-decoration: underline;
 }

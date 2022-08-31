@@ -42,12 +42,20 @@ h1 {
   white-space: nowrap;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
 .greyBg {
   background-color: var(--grey);
   color: var(--bg-color);
 }
 
-.streamRow {
+.row {
   display: flex;
   align-items: center;
   gap: 2ch;

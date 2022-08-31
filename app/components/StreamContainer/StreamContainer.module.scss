@@ -1,28 +1,29 @@
-.offline {
-  background-color: hsla(0, 55, 30, 1);
+.streamer--offline {
+  background-color: hsla(0, 55%, 30%, 1);
 }
 
-.online {
-  background-color: hsla(115, 55, 25, 1);
+.streamer--online {
+  background-color: hsla(115, 55%, 25%, 1);
+  color: var(--grey);
 }
 
-.profilePicture {
+.streamer--picture {
   max-width: 8ch;
   min-width: 8ch;
   height: 8ch;
-  background-color: hsla(220, 50, 60, 1);
+  background-color: hsla(220, 50%, 60%, 1);
   border-color: white;
   border-style: solid;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.streamerName {
+.streamer--name {
   width: 100%;
   max-width: 20ch;
 }
 
-.description {
+.streamer--description {
   text-align: center;
   text-overflow: ellipsis;
   width: 100%;
