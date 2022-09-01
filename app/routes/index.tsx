@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { LinksFunction, TypedResponse } from "@remix-run/node"
+import type { LinksFunction } from "@remix-run/node"
 import type { StreamerType } from "~/types/streamer"
 import type { FilterType } from "~/types/filter"
 import { json } from "@remix-run/node"
@@ -50,7 +50,11 @@ export const loader = async () => {
     }
   })
 
-  return json(await Promise.all(streamerStatus))
+  return json(
+    (await Promise.all(streamerStatus)).sort((a) => {
+      return a.stream ? -1 : 1
+    })
+  )
 }
 
 const Index = () => {
@@ -61,29 +65,12 @@ const Index = () => {
   if (!streamers || streamers.length < 1)
     return <div>No streamers available</div>
 
-  // TODO: Apply CSS "hidden" class instead of filtering out items
   return (
     <Wrapper>
       <Header title="Twitch Streamers" filter={filter} setFilter={setFilter} />
-      {streamers
-        .filter((streamer) => {
-          switch (filter) {
-            case "ALL":
-              return true
-            case "ONLINE":
-              return !!streamer.stream
-            case "OFFLINE":
-              return !streamer.isLoading && !streamer.stream
-            default:
-              return true
-          }
-        })
-        .sort((a, b) => {
-          return a.stream ? -1 : 1
-        })
-        .map((stream) => (
-          <StreamContainer streamer={stream} key={stream.name} />
-        ))}
+      {streamers.map((stream) => (
+        <StreamContainer streamer={stream} filter={filter} key={stream.name} />
+      ))}
       <ScrollToTopButton />
     </Wrapper>
   )

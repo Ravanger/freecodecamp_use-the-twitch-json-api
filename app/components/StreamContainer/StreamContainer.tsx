@@ -2,15 +2,24 @@ import type { StreamContainerPropTypes } from "./StreamContainer.types"
 import Spinner from "../Spinner"
 import classNames from "classnames"
 
-const StreamContainer: React.FC<StreamContainerPropTypes> = ({ streamer }) => {
+const StreamContainer: React.FC<StreamContainerPropTypes> = ({
+  streamer,
+  filter,
+}) => {
+  const status = classNames({
+    loading: streamer.isLoading,
+    online: !streamer.isLoading && streamer.stream,
+    offline: !streamer.isLoading && !streamer.stream,
+  })
+
   return (
     <div
       className={classNames("streamer", "row")}
-      data-status={classNames({
-        loading: streamer.isLoading && !streamer.stream,
-        online: !streamer.isLoading && streamer.stream,
-        offline: !streamer.isLoading && !streamer.stream,
-      })}>
+      data-status={status}
+      data-hidden={
+        filter !== "ALL" &&
+        (status.toUpperCase() !== filter.toUpperCase() || streamer.isLoading)
+      }>
       <img
         src={streamer.logoUrl}
         className="streamer"
