@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
-import type { LinksFunction } from "@remix-run/node"
+import { useState } from "react"
+import type { LinksFunction, TypedResponse } from "@remix-run/node"
 import type { StreamerType } from "~/types/streamer"
 import type { FilterType } from "~/types/filter"
+import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 import Header from "~/components/Header"
 import ScrollToTopButton from "~/components/ScrollToTopButton"
 import Wrapper from "~/components/Wrapper"
@@ -14,57 +16,52 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
 }
 
+export const loader = async () => {
+  const streamers: StreamerType[] = STREAMERS.map((streamer) => ({
+    name: streamer,
+    isLoading: true,
+    logoUrl: "https://i.pravatar.cc/300?img=61",
+    stream: undefined,
+  }))
+
+  const streamerStatus = streamers.map(async (streamer) => {
+    try {
+      const res = await fetch(`${TWITCH_STREAM_URL}/${streamer.name}`)
+      const data = await res.json()
+      let logoUrl = ""
+      if (data.stream) {
+        logoUrl = data.stream.channel?.logo || ""
+      } else {
+        const resUser = await fetch(`${TWITCH_USER_URL}/${streamer.name}`)
+        const dataUser = await resUser.json()
+        logoUrl = dataUser.logo
+      }
+
+      const streamerAttributes = {
+        stream: data.stream,
+        isLoading: false,
+        logoUrl,
+      }
+
+      return { ...streamer, ...streamerAttributes }
+    } catch (error) {
+      console.error(error)
+      throw new Response("Server error", { status: 500 })
+    }
+  })
+
+  return json(await Promise.all(streamerStatus))
+}
+
 const Index = () => {
-  const [streamers, setStreamers] = useState<StreamerType[]>(
-    STREAMERS.map((streamer) => ({
-      name: streamer,
-      isLoading: true,
-      logoUrl: "https://i.pravatar.cc/300?img=61",
-      stream: undefined,
-    }))
-  )
+  const streamers: StreamerType[] = useLoaderData<typeof loader>()
 
   const [filter, setFilter] = useState<FilterType>("ALL")
-
-  useEffect(() => {
-    streamers.forEach((streamer) => {
-      setTimeout(async () => {
-        try {
-          const res = await fetch(`${TWITCH_STREAM_URL}/${streamer.name}`)
-          const data = await res.json()
-          let logoUrl = ""
-          if (data.stream) {
-            logoUrl = data.stream.channel?.logo
-          } else {
-            const resUser = await fetch(`${TWITCH_USER_URL}/${streamer.name}`)
-            const dataUser = await resUser.json()
-            logoUrl = dataUser.logo
-          }
-
-          const streamerAttributes = {
-            stream: data.stream,
-            isLoading: false,
-            logoUrl,
-          }
-
-          setStreamers((oldStreamers) =>
-            oldStreamers.map((oldStreamer) =>
-              oldStreamer.name === streamer.name
-                ? { ...oldStreamer, ...streamerAttributes }
-                : oldStreamer
-            )
-          )
-        } catch (error) {
-          console.error(error)
-        }
-      }, Math.random() * 3000) // Simulate API latency
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   if (!streamers || streamers.length < 1)
     return <div>No streamers available</div>
 
+  // TODO: Apply CSS "hidden" class instead of filtering out items
   return (
     <Wrapper>
       <Header title="Twitch Streamers" filter={filter} setFilter={setFilter} />
