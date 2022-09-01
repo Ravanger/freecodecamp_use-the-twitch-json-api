@@ -10,7 +10,7 @@
   transform: translateY(100px);
   transition: all 0.5s ease;
 
-  &[data-showButton="true"] {
+  &[data-visible="true"] {
     opacity: 1;
     transform: translateY(0);
   }
