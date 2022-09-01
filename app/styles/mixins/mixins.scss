@@ -1,0 +1,4 @@
+@mixin grey-bg {
+  background-color: var(--grey);
+  color: var(--bg-color);
+}

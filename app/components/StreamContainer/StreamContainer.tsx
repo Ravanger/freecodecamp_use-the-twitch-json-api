@@ -5,17 +5,19 @@ import classNames from "classnames"
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({ streamer }) => {
   return (
     <div
-      className={classNames("row", {
-        greyBg: streamer.isLoading && !streamer.stream,
-        "streamer--online": !streamer.isLoading && streamer.stream,
-        "streamer--offline": !streamer.isLoading && !streamer.stream,
+      className={classNames("streamer", "row")}
+      data-status={classNames({
+        loading: streamer.isLoading && !streamer.stream,
+        online: !streamer.isLoading && streamer.stream,
+        offline: !streamer.isLoading && !streamer.stream,
       })}>
       <img
         src={streamer.logoUrl}
-        className="streamer--picture"
+        className="streamer"
+        data-section="picture"
         alt={streamer.name}
       />
-      <div className="streamer--name">
+      <div className="streamer" data-section="name">
         <a
           href={`https://www.twitch.tv/${streamer.name}`}
           target="_blank"
@@ -23,7 +25,7 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({ streamer }) => {
           <span>{streamer.name}</span>
         </a>
       </div>
-      <div className="streamer--description">
+      <div className="streamer" data-section="description">
         {streamer.isLoading ? (
           <Spinner />
         ) : streamer.stream ? (

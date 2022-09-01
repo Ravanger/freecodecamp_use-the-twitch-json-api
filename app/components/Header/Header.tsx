@@ -1,27 +1,26 @@
 import type { HeaderPropTypes } from "./Header.types"
-import classNames from "classnames"
 
 const Header: React.FC<HeaderPropTypes> = ({ title, filter, setFilter }) => {
   return (
     <header className="header row greyBg">
       <h1>{title}</h1>
-      <div className="header--controls">
+      <div data-section="controls">
         <button
-          className={classNames(filter === "ALL" && "header--active")}
+          data-active={filter === "ALL"}
           onClick={() => {
             setFilter("ALL")
           }}>
           ALL
         </button>
         <button
-          className={classNames(filter === "ONLINE" && "header--active")}
+          data-active={filter === "ONLINE"}
           onClick={() => {
             setFilter("ONLINE")
           }}>
           ONLINE
         </button>
         <button
-          className={classNames(filter === "OFFLINE" && "header--active")}
+          data-active={filter === "OFFLINE"}
           onClick={() => {
             setFilter("OFFLINE")
           }}>

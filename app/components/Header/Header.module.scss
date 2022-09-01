@@ -1,12 +1,12 @@
 .header {
   justify-content: space-between;
   padding: 1ch 16ch;
-}
 
-.header--controls {
-  display: flex;
-}
+  & [data-active="true"] {
+    text-decoration: underline;
+  }
 
-.header--active {
-  text-decoration: underline;
+  & [data-section="controls"] {
+    display: flex;
+  }
 }
