@@ -2,7 +2,6 @@ import type { StreamContainerPropTypes } from "./StreamContainer.types"
 import Spinner from "../Spinner"
 import classNames from "classnames"
 import { useStreamerStatus } from "~/hooks/useStreamerStatus"
-import { memo } from "react"
 
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({
   streamer,
@@ -50,4 +49,4 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
   )
 }
 
-export default memo(StreamContainer)
+export default StreamContainer

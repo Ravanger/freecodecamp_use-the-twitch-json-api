@@ -37,9 +37,9 @@ const Index = () => {
     <Wrapper>
       <Header title="Twitch Streamers" filter={filter} setFilter={setFilter} />
       {streamers
-        .sort((streamer) => {
-          return streamer.stream ? -1 : 1
-        })
+        // .sort((streamer) => {
+        //   return streamer.stream ? -1 : 1
+        // })
         .map((stream) => (
           <StreamContainer
             key={stream.name}
