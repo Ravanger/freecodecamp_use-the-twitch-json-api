@@ -16,7 +16,7 @@
     color: var(--grey);
   }
 
-  & [data-hidden="true"] {
+  &[data-hidden="true"] {
     display: none !important;
   }
 
