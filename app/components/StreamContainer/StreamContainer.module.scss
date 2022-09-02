@@ -16,11 +16,11 @@
     color: var(--grey);
   }
 
-  &[data-hidden="true"] {
+  & [data-hidden="true"] {
     display: none !important;
   }
 
-  &[data-section="picture"] {
+  & [data-section="picture"] {
     max-width: 8ch;
     min-width: 8ch;
     height: 8ch;
@@ -31,12 +31,12 @@
     overflow: hidden;
   }
 
-  &[data-section="name"] {
+  & [data-section="name"] {
     width: 100%;
     max-width: 20ch;
   }
 
-  &[data-section="description"] {
+  & [data-section="description"] {
     text-align: center;
     text-overflow: ellipsis;
     width: 100%;

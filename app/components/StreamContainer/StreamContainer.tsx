@@ -20,13 +20,8 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
         filter !== "ALL" &&
         (status.toUpperCase() !== filter.toUpperCase() || streamer.isLoading)
       }>
-      <img
-        src={streamer.logoUrl}
-        className="streamer"
-        data-section="picture"
-        alt={streamer.name}
-      />
-      <div className="streamer" data-section="name">
+      <img src={streamer.logoUrl} data-section="picture" alt={streamer.name} />
+      <div data-section="name">
         <a
           href={`https://www.twitch.tv/${streamer.name}`}
           target="_blank"
@@ -34,7 +29,7 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
           <span>{streamer.name}</span>
         </a>
       </div>
-      <div className="streamer" data-section="description">
+      <div data-section="description">
         {streamer.isLoading ? (
           <Spinner />
         ) : streamer.stream ? (
