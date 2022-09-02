@@ -1,41 +1,46 @@
 import type { StreamContainerPropTypes } from "./StreamContainer.types"
 import Spinner from "../Spinner"
 import classNames from "classnames"
+import { useStreamerStatus } from "~/hooks/useStreamerStatus"
+import { memo } from "react"
 
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({
   streamer,
   filter,
 }) => {
+  const streamerData = useStreamerStatus(streamer)
   const status = classNames({
-    loading: streamer.isLoading,
-    online: !streamer.isLoading && streamer.stream,
-    offline: !streamer.isLoading && !streamer.stream,
+    loading: streamerData.isLoading,
+    online: !streamerData.isLoading && streamerData.stream,
+    offline: !streamerData.isLoading && !streamerData.stream,
   })
 
+  const hideStreamer =
+    filter !== "ALL" &&
+    (status.toUpperCase() !== filter.toUpperCase() || streamerData.isLoading)
+
   return (
-    <div
-      className="streamer"
-      data-status={status}
-      data-hidden={
-        filter !== "ALL" &&
-        (status.toUpperCase() !== filter.toUpperCase() || streamer.isLoading)
-      }>
-      <img src={streamer.logoUrl} data-section="picture" alt={streamer.name} />
+    <div className="streamer" data-status={status} data-hidden={hideStreamer}>
+      <img
+        src={streamerData.logoUrl}
+        data-section="picture"
+        alt={streamerData.name}
+      />
       <div data-section="name">
         <a
-          href={`https://www.twitch.tv/${streamer.name}`}
+          href={`https://www.twitch.tv/${streamerData.name}`}
           target="_blank"
           rel="noreferrer">
-          <span>{streamer.name}</span>
+          <span>{streamerData.name}</span>
         </a>
       </div>
       <div data-section="description">
-        {streamer.isLoading ? (
+        {streamerData.isLoading ? (
           <Spinner />
-        ) : streamer.stream ? (
+        ) : streamerData.stream ? (
           <>
-            <span className="bold italic">{streamer.stream.game}</span> -{" "}
-            <span>{streamer.stream.channel.status}</span>
+            <span className="bold italic">{streamerData.stream.game}</span> -{" "}
+            <span>{streamerData.stream.channel.status}</span>
           </>
         ) : (
           "Offline"
@@ -45,4 +50,4 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
   )
 }
 
-export default StreamContainer
+export default memo(StreamContainer)
