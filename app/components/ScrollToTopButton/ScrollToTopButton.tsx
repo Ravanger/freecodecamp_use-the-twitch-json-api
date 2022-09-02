@@ -1,6 +1,5 @@
 import { FiChevronUp } from "react-icons/fi"
 import { useEffect, useState } from "react"
-import classNames from "classnames"
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -22,7 +21,7 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <button
-      className={classNames("scrollToTop", "greyBg")}
+      className="scrollToTop"
       data-visible={isVisible}
       onClick={() => {
         window.scrollTo({

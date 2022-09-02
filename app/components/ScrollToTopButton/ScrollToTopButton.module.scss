@@ -1,4 +1,8 @@
+@use "../../styles/mixins/mixins.scss";
+
 .scrollToTop {
+  @include mixins.grey-bg;
+
   z-index: 100;
   border-radius: 50%;
   position: fixed;

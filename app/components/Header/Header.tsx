@@ -2,7 +2,7 @@ import type { HeaderPropTypes } from "./Header.types"
 
 const Header: React.FC<HeaderPropTypes> = ({ title, filter, setFilter }) => {
   return (
-    <header className="header row greyBg">
+    <header className="header">
       <h1>{title}</h1>
       <div data-section="controls">
         <button

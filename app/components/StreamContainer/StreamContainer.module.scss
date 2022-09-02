@@ -1,6 +1,8 @@
 @use "../../styles/mixins/mixins.scss";
 
 .streamer {
+  @include mixins.row;
+
   &[data-status="loading"] {
     @include mixins.grey-bg;
   }

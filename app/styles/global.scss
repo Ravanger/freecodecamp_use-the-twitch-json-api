@@ -50,16 +50,3 @@ h1 {
 .italic {
   font-style: italic;
 }
-
-.greyBg {
-  @include mixins.grey-bg;
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 2ch;
-  margin-top: 1ch;
-  padding: 1ch 4ch;
-  transition: background-color 0.2s ease-in-out;
-}

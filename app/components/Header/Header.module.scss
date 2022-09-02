@@ -1,4 +1,9 @@
+@use "../../styles/mixins/mixins.scss";
+
 .header {
+  @include mixins.grey-bg;
+  @include mixins.row;
+
   justify-content: space-between;
   padding: 1ch 16ch;
 

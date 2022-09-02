@@ -14,7 +14,7 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
 
   return (
     <div
-      className={classNames("streamer", "row")}
+      className="streamer"
       data-status={status}
       data-hidden={
         filter !== "ALL" &&
