@@ -36,7 +36,7 @@ const Index = () => {
       return {
         queryKey: ["streamer", `streamer-${streamer.name}`],
         queryFn: () => getStreamerData(streamer),
-        initialData: streamer,
+        placeholderData: streamer,
       }
     }),
   })
