@@ -44,8 +44,6 @@ const Index = () => {
   if (!streamers || streamers.length < 1)
     return <div>No streamers available</div>
 
-  console.log(streamerQueries)
-
   return (
     <Wrapper>
       <Header title="Twitch Streamers" filter={filter} setFilter={setFilter} />
