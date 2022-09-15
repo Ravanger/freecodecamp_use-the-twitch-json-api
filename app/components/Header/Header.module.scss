@@ -13,5 +13,9 @@
 
   & [data-section="controls"] {
     display: flex;
+
+    > button {
+      color: var(--bg-color);
+    }
   }
 }
