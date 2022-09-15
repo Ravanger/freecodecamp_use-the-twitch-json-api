@@ -1,6 +1,8 @@
 import type { StreamContainerPropTypes } from "./StreamContainer.types"
 import Spinner from "../Spinner"
 import classNames from "classnames"
+import { FILTER_TYPE } from "~/types/filter"
+import { DEFAULT_LOGO_URL } from "~/data/streamers"
 
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({
   streamer: streamerData,
@@ -13,12 +15,12 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
     OFFLINE: !isLoading && !streamerData?.stream,
   })
 
-  const hideStreamer = filter !== "ALL" && status !== filter
+  const hideStreamer = filter !== FILTER_TYPE.ALL && status !== filter
 
   return (
     <div className="streamer" data-status={status} data-hidden={hideStreamer}>
       <img
-        src={streamerData?.logoUrl}
+        src={streamerData?.logoUrl || DEFAULT_LOGO_URL}
         data-section="picture"
         alt={streamerData?.name}
       />
@@ -35,8 +37,8 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
           <Spinner />
         ) : streamerData?.stream ? (
           <>
-            <span className="bold italic">{streamerData.stream.game}</span> -{" "}
-            <span>{streamerData.stream.channel.status}</span>
+            <span className="bold italic">{streamerData.stream.game}</span>
+            <span>{` - ${streamerData.stream.channel.status}`}</span>
           </>
         ) : (
           "Offline"

@@ -2,12 +2,13 @@ import { useState } from "react"
 import type { LinksFunction } from "@remix-run/node"
 import type { StreamerType } from "~/types/streamer"
 import type { FilterType } from "~/types/filter"
+import { FILTER_TYPE } from "~/types/filter"
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import Header from "~/components/Header"
 import ScrollToTopButton from "~/components/ScrollToTopButton"
 import Wrapper from "~/components/Wrapper"
-import { STREAMERS } from "~/data/streamers"
+import { DEFAULT_LOGO_URL, STREAMERS } from "~/data/streamers"
 import StreamContainer from "~/components/StreamContainer"
 import styles from "~/styles/routes/index.css"
 import { useQueries } from "@tanstack/react-query"
@@ -21,7 +22,7 @@ export const loader = async () => {
   const streamers: StreamerType[] = STREAMERS.map((streamer) => ({
     name: streamer,
     isLoading: true,
-    logoUrl: "https://i.pravatar.cc/300?img=61",
+    logoUrl: DEFAULT_LOGO_URL,
     stream: undefined,
   }))
 
@@ -30,11 +31,11 @@ export const loader = async () => {
 
 const Index = () => {
   const streamers: StreamerType[] = useLoaderData<typeof loader>()
-  const [filter, setFilter] = useState<FilterType>("ALL")
+  const [filter, setFilter] = useState<FilterType>(FILTER_TYPE.ALL)
   const streamerQueries = useQueries({
     queries: streamers.map((streamer) => {
       return {
-        queryKey: ["streamer", `streamer-${streamer.name}`],
+        queryKey: ["streamers", `streamer-${streamer.name}`],
         queryFn: () => getStreamerData(streamer),
         placeholderData: streamer,
       }

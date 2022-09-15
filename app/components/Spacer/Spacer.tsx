@@ -1,14 +1,14 @@
 import type { SpacerPropTypes } from "./Spacer.types"
+import { SPACER_TYPES } from "./Spacer.types"
 import classNames from "classnames"
 
-const defaultProps: SpacerPropTypes = {
-  size: "1rem",
-  axis: "VERTICAL",
-}
-
-const Spacer: React.FC<SpacerPropTypes> = ({ axis, size, className }) => {
-  const width = axis === "VERTICAL" ? null : size
-  const height = axis === "HORIZONTAL" ? null : size
+const Spacer: React.FC<SpacerPropTypes> = ({
+  axis = SPACER_TYPES.VERTICAL,
+  size = "1rem",
+  className,
+}) => {
+  const width = axis === SPACER_TYPES.VERTICAL ? null : size
+  const height = axis === SPACER_TYPES.HORIZONTAL ? null : size
 
   return (
     <span
@@ -20,7 +20,5 @@ const Spacer: React.FC<SpacerPropTypes> = ({ axis, size, className }) => {
     />
   )
 }
-
-Spacer.defaultProps = defaultProps
 
 export default Spacer

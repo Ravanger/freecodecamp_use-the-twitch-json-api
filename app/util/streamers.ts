@@ -1,5 +1,6 @@
 import type { StreamerType } from "~/types/streamer"
 import { TWITCH_STREAM_URL, TWITCH_USER_URL } from "~/data/apiRoutes"
+import { DEFAULT_LOGO_URL } from "~/data/streamers"
 
 export const getStreamerData = async (
   streamer: StreamerType
@@ -9,7 +10,7 @@ export const getStreamerData = async (
     if (!res.ok) throw Error("Error fetching streamer data")
     const data = await res.json()
 
-    let logoUrl = "https://i.pravatar.cc/300?img=61"
+    let logoUrl = DEFAULT_LOGO_URL
     if (data.stream) {
       logoUrl = data.stream.channel?.logo || logoUrl
     } else {

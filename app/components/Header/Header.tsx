@@ -1,3 +1,4 @@
+import { FILTER_TYPE } from "~/types/filter"
 import type { HeaderPropTypes } from "./Header.types"
 
 const Header: React.FC<HeaderPropTypes> = ({ title, filter, setFilter }) => {
@@ -6,25 +7,25 @@ const Header: React.FC<HeaderPropTypes> = ({ title, filter, setFilter }) => {
       <h1>{title}</h1>
       <div data-section="controls">
         <button
-          data-active={filter === "ALL"}
+          data-active={filter === FILTER_TYPE.ALL}
           onClick={() => {
-            setFilter("ALL")
+            setFilter(FILTER_TYPE.ALL)
           }}>
-          ALL
+          {FILTER_TYPE.ALL}
         </button>
         <button
-          data-active={filter === "ONLINE"}
+          data-active={filter === FILTER_TYPE.ONLINE}
           onClick={() => {
-            setFilter("ONLINE")
+            setFilter(FILTER_TYPE.ONLINE)
           }}>
-          ONLINE
+          {FILTER_TYPE.ONLINE}
         </button>
         <button
-          data-active={filter === "OFFLINE"}
+          data-active={filter === FILTER_TYPE.OFFLINE}
           onClick={() => {
-            setFilter("OFFLINE")
+            setFilter(FILTER_TYPE.OFFLINE)
           }}>
-          OFFLINE
+          {FILTER_TYPE.OFFLINE}
         </button>
       </div>
     </header>
