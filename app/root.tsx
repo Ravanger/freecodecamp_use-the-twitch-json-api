@@ -35,7 +35,13 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: globalStyles },
 ]
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 export default function App() {
   return (
