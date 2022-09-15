@@ -10,6 +10,8 @@ import Wrapper from "~/components/Wrapper"
 import { STREAMERS } from "~/data/streamers"
 import StreamContainer from "~/components/StreamContainer"
 import styles from "~/styles/routes/index.css"
+import { useQueries } from "@tanstack/react-query"
+import { getStreamerData } from "~/util/streamers"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -29,22 +31,34 @@ export const loader = async () => {
 const Index = () => {
   const streamers: StreamerType[] = useLoaderData<typeof loader>()
   const [filter, setFilter] = useState<FilterType>("ALL")
+  const streamerQueries = useQueries({
+    queries: streamers.map((streamer, index) => {
+      return {
+        queryKey: ["streamer", `streamer-${streamer.name}`],
+        queryFn: () => getStreamerData(streamer),
+        initialData: streamers[index],
+      }
+    }),
+  })
 
   if (!streamers || streamers.length < 1)
     return <div>No streamers available</div>
 
+  console.log(streamerQueries)
+
   return (
     <Wrapper>
       <Header title="Twitch Streamers" filter={filter} setFilter={setFilter} />
-      {streamers
-        // .sort((streamer) => {
-        //   return streamer.stream ? -1 : 1
-        // })
-        .map((stream) => (
+      {streamerQueries
+        .sort((streamer) => {
+          return streamer.data?.stream ? -1 : 1
+        })
+        .map((streamer, index) => (
           <StreamContainer
-            key={stream.name}
-            streamer={stream}
+            key={`${streamer.data?.name}${index}`}
+            streamer={streamer.data}
             filter={filter}
+            isLoading={streamer.isLoading || streamer.isFetching}
           />
         ))}
       <ScrollToTopButton />

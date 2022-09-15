@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import globalStyles from "~/styles/global.css"
 
@@ -34,6 +35,8 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: globalStyles },
 ]
 
+const queryClient = new QueryClient()
+
 export default function App() {
   return (
     <html lang="en">
@@ -42,7 +45,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <QueryClientProvider client={queryClient}>
+          <Outlet />
+        </QueryClientProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

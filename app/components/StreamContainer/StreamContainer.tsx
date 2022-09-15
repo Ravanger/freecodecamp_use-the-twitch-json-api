@@ -1,42 +1,39 @@
 import type { StreamContainerPropTypes } from "./StreamContainer.types"
 import Spinner from "../Spinner"
 import classNames from "classnames"
-import { useStreamerStatus } from "~/hooks/useStreamerStatus"
 
 const StreamContainer: React.FC<StreamContainerPropTypes> = ({
-  streamer,
+  streamer: streamerData,
   filter,
+  isLoading,
 }) => {
-  const streamerData = useStreamerStatus(streamer)
   const status = classNames({
-    loading: streamerData.isLoading,
-    online: !streamerData.isLoading && streamerData.stream,
-    offline: !streamerData.isLoading && !streamerData.stream,
+    LOADING: isLoading,
+    ONLINE: !isLoading && streamerData?.stream,
+    OFFLINE: !isLoading && !streamerData?.stream,
   })
 
-  const hideStreamer =
-    filter !== "ALL" &&
-    (status.toUpperCase() !== filter.toUpperCase() || streamerData.isLoading)
+  const hideStreamer = filter !== "ALL" && status !== filter
 
   return (
     <div className="streamer" data-status={status} data-hidden={hideStreamer}>
       <img
-        src={streamerData.logoUrl}
+        src={streamerData?.logoUrl}
         data-section="picture"
-        alt={streamerData.name}
+        alt={streamerData?.name}
       />
       <div data-section="name">
         <a
-          href={`https://www.twitch.tv/${streamerData.name}`}
+          href={`https://www.twitch.tv/${streamerData?.name}`}
           target="_blank"
           rel="noreferrer">
-          <span>{streamerData.name}</span>
+          <span>{streamerData?.name}</span>
         </a>
       </div>
       <div data-section="description">
-        {streamerData.isLoading ? (
+        {isLoading ? (
           <Spinner />
-        ) : streamerData.stream ? (
+        ) : streamerData?.stream ? (
           <>
             <span className="bold italic">{streamerData.stream.game}</span> -{" "}
             <span>{streamerData.stream.channel.status}</span>
