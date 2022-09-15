@@ -1,5 +1,7 @@
 # Use the Twitch JSON API
 
+Built with _Remix.js_ and _React Query_
+
 <https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/use-the-twitch-json-api>
 
 **Objective**: Build an app that is functionally similar to this: <https://codepen.io/freeCodeCamp/full/Myvqmo/>.
