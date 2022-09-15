@@ -23,6 +23,7 @@ const ScrollToTopButton: React.FC = () => {
     <button
       className="scrollToTop"
       data-visible={isVisible}
+      aria-label="Scroll to top"
       onClick={() => {
         window.scrollTo({
           top: 0,
