@@ -32,11 +32,11 @@ const Index = () => {
   const streamers: StreamerType[] = useLoaderData<typeof loader>()
   const [filter, setFilter] = useState<FilterType>("ALL")
   const streamerQueries = useQueries({
-    queries: streamers.map((streamer, index) => {
+    queries: streamers.map((streamer) => {
       return {
         queryKey: ["streamer", `streamer-${streamer.name}`],
         queryFn: () => getStreamerData(streamer),
-        initialData: streamers[index],
+        initialData: streamer,
       }
     }),
   })
