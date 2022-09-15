@@ -1,4 +1,8 @@
-import type { MetaFunction, LinksFunction } from "@remix-run/node"
+import type {
+  MetaFunction,
+  LinksFunction,
+  ErrorBoundaryComponent,
+} from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -8,8 +12,15 @@ import {
   ScrollRestoration,
 } from "@remix-run/react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-
 import globalStyles from "~/styles/global.css"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 export const meta: MetaFunction = () => {
   const title = "Use the Twitch JSON API"
@@ -35,15 +46,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: globalStyles },
 ]
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-})
-
-export default function App() {
+export const App = () => {
   return (
     <html lang="en">
       <head>
@@ -62,7 +65,7 @@ export default function App() {
   )
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
   console.error(error)
   return (
     <html>
@@ -80,3 +83,5 @@ export function ErrorBoundary({ error }: { error: Error }) {
     </html>
   )
 }
+
+export default App

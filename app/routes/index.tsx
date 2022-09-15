@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { LinksFunction } from "@remix-run/node"
+import type { LinksFunction, LoaderFunction } from "@remix-run/node"
 import type { StreamerType } from "~/types/streamer"
 import type { FilterType } from "~/types/filter"
 import { FILTER_TYPE } from "~/types/filter"
@@ -18,7 +18,7 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
 }
 
-export const loader = async () => {
+export const loader: LoaderFunction = async () => {
   const streamers: StreamerType[] = STREAMERS.map((streamer) => ({
     name: streamer,
     isLoading: true,
@@ -29,7 +29,7 @@ export const loader = async () => {
   return json(streamers)
 }
 
-const Index = () => {
+const Index: React.FC = () => {
   const streamers: StreamerType[] = useLoaderData<typeof loader>()
   const [filter, setFilter] = useState<FilterType>(FILTER_TYPE.ALL)
   const streamerQueries = useQueries({
