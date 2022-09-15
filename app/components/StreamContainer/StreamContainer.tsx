@@ -23,6 +23,8 @@ const StreamContainer: React.FC<StreamContainerPropTypes> = ({
         src={streamerData?.logoUrl || DEFAULT_LOGO_URL}
         data-section="picture"
         alt={streamerData?.name}
+        width={64}
+        height={64}
       />
       <div data-section="name">
         <a
