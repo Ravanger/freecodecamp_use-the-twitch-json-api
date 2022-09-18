@@ -1,10 +1,10 @@
-export const SPACER_TYPES = Object.freeze({
-  VERTICAL: "VERTICAL",
-  HORIZONTAL: "HORIZONTAL",
-})
+export enum SPACER_TYPES {
+  VERTICAL = "Vertical",
+  HORIZONTAL = "Horizontal",
+}
 
 export type SpacerPropTypes = {
   size?: string
-  axis?: typeof SPACER_TYPES.VERTICAL | typeof SPACER_TYPES.HORIZONTAL
+  axis?: SPACER_TYPES
   className?: string
 }
